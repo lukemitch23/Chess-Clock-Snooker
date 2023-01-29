@@ -19,14 +19,23 @@ struct ContentView: View {
     @State var playertwoout = false
     @State var multiply = ""
     @State var multiplier = 10
+    @State var playernames = true
+    @State var playeronename = "Player 1"
+    @State var playertwoname = "Player 2"
     
     let playerone = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     let playertwo = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
+        Text("").alert("Enter player names", isPresented: $playernames, actions: {
+            TextField("Enter player 1 name", text: $playeronename)
+            TextField("Enter the multiplier", text: $playertwoname)
+            Button("Ok", action: setnames)
+            Button("Cancel", role: .cancel, action: {})
+        })
         VStack {
             Group{
-                Text("Player 1").font(.system(size: 50))
+                Text("\(playeronename)").font(.system(size: 50))
                 Text("\(playeronetimer)")
                     .onReceive(playerone) { _ in
                         if playeronetimer > 0 && playeronerunning {
@@ -37,7 +46,7 @@ struct ContentView: View {
                             playeronerunning = false
                         }
                     }.font(.system(size: 150, weight: .bold))
-                    .alert("Out of time! Player 2 wins", isPresented: $playeroneout, actions: {
+                    .alert("Out of time! \(playertwoname) wins", isPresented: $playeroneout, actions: {
                         Button("Ok", action: gamereset)
                     })
             }.offset(y:-90)
@@ -77,12 +86,12 @@ struct ContentView: View {
             
             Group {
                 HStack(spacing: 30) {
-                    Button("Player 1") {
+                    Button("\(playeronename)") {
                         playeronerunning = true
                         playertworunning = false
                     }.font(.system(size: 20)).foregroundColor(.black).fontWeight(.bold)
                     
-                    Button("Player 2") {
+                    Button("\(playertwoname)") {
                         playertworunning = true
                         playeronerunning = false
                     }.font(.system(size: 20)).foregroundColor(.black).fontWeight(.bold)
@@ -151,12 +160,17 @@ struct ContentView: View {
                             playertworunning = false
                         }
                     }.font(.system(size: 150, weight: .bold))
-                Text("Player 2").font(.system(size: 50))
+                Text("\(playertwoname)").font(.system(size: 50))
             }.rotationEffect(.degrees(180)).offset(y:90)
-            .alert("Out of time! Player 1 wins", isPresented: $playertwoout, actions: {
+            .alert("Out of time! \(playeronename) wins", isPresented: $playertwoout, actions: {
                 Button("Ok", action: gamereset)
             })
         }
+    }
+    
+    func setnames(){
+        playeronename = playeronename
+        playertwoname = playertwoname
     }
     
     func gamereset(){
