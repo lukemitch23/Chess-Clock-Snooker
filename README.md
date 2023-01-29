@@ -7,6 +7,8 @@
 
 The app is built in Swift that combines a classic chess countdown clock for two people with the game of snooker. The app comprises of two countdown clocks just like a chess clock but with the addition of 7 coloured balls. Each time you pot a ball, press the button of that colour and get extra seconds on your time. The player who survives the longest without running out of time wins!
 
+![banner1](https://github.com/lukemitch23/Camera-Auction-Website/blob/main/website/banner1.jpeg)
+
 ## Installation and requirements
 ### You will need:
 - A Mac with Xcode
