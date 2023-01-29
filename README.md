@@ -13,7 +13,7 @@ The app is built in Swift that combines a classic chess countdown clock for two 
 - An iphone on at least IOS 16 and in developer mode ([For help with this, see this link](https://docs.expo.dev/guides/ios-developer-mode/))
 
 ### Installation:
-- Clone the repository using `git clone https://github.com/lukemitch23/chess-clock-snooker.git`
+- Clone the repository using `$ git clone https://github.com/lukemitch23/chess-clock-snooker.git`
 - Open the repository file in xcode
 - Plug your iphone in ensuring that the program is set to build to the iphone
 - Build the app and ensure it has loaded onto your phone
