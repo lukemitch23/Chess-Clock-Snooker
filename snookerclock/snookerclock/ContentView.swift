@@ -17,6 +17,8 @@ struct ContentView: View {
     @State var timerIntValue = 0
     @State var playeroneout = false
     @State var playertwoout = false
+    @State var multiply = ""
+    @State var multiplier = 10
     
     let playerone = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     let playertwo = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -43,31 +45,31 @@ struct ContentView: View {
             Group{
                 HStack{
                     Button("\(Image(systemName: "circle.fill"))"){
-                        playeronetimer += 10
+                        playeronetimer += (1 * multiplier)
                     }.foregroundColor(.red).font(.system(size:35))
                     
                     Button("\(Image(systemName: "circle.fill"))"){
-                        playeronetimer += 20
+                        playeronetimer += (2 * multiplier)
                     }.foregroundColor(.yellow).font(.system(size:35))
                     
                     Button("\(Image(systemName: "circle.fill"))"){
-                        playeronetimer += 30
+                        playeronetimer += (3 * multiplier)
                     }.foregroundColor(.green).font(.system(size:35))
                     
                     Button("\(Image(systemName: "circle.fill"))"){
-                        playeronetimer += 40
+                        playeronetimer += (4 * multiplier)
                     }.foregroundColor(.brown).font(.system(size:35))
                     
                     Button("\(Image(systemName: "circle.fill"))"){
-                        playeronetimer += 50
+                        playeronetimer += (5 * multiplier)
                     }.foregroundColor(.blue).font(.system(size:35))
                     
                     Button("\(Image(systemName: "circle.fill"))"){
-                        playeronetimer += 60
+                        playeronetimer += (6 * multiplier)
                     }.foregroundColor(.orange).font(.system(size:35))
                     
                     Button("\(Image(systemName: "circle.fill"))"){
-                        playeronetimer += 70
+                        playeronetimer += (7 * multiplier)
                     }.foregroundColor(.black).font(.system(size:35))
 
                 }
@@ -97,6 +99,7 @@ struct ContentView: View {
                     }.font(.system(size: 20)).fontWeight(.bold)
                         .alert("New Timer Value", isPresented: $showingAlert, actions: {
                             TextField("Enter the time in seconds", text: $timerValue).keyboardType(.numberPad)
+                            TextField("Enter the multiplier", text: $multiply).keyboardType(.numberPad)
                             Button("Ok", action: updateTimers)
                             Button("Cancel", role: .cancel, action: {})
                         })
@@ -107,31 +110,31 @@ struct ContentView: View {
             Group{
                 HStack{
                     Button("\(Image(systemName: "circle.fill"))"){
-                        playertwotimer += 10
+                        playertwotimer += (1 * multiplier)
                     }.foregroundColor(.red).font(.system(size:35))
                     
                     Button("\(Image(systemName: "circle.fill"))"){
-                        playertwotimer += 20
+                        playertwotimer += (2 * multiplier)
                     }.foregroundColor(.yellow).font(.system(size:35))
                     
                     Button("\(Image(systemName: "circle.fill"))"){
-                        playertwotimer += 30
+                        playertwotimer += (3 * multiplier)
                     }.foregroundColor(.green).font(.system(size:35))
                     
                     Button("\(Image(systemName: "circle.fill"))"){
-                        playertwotimer += 40
+                        playertwotimer += (4 * multiplier)
                     }.foregroundColor(.brown).font(.system(size:35))
                     
                     Button("\(Image(systemName: "circle.fill"))"){
-                        playertwotimer += 50
+                        playertwotimer += (5 * multiplier)
                     }.foregroundColor(.blue).font(.system(size:35))
                     
                     Button("\(Image(systemName: "circle.fill"))"){
-                        playertwotimer += 60
+                        playertwotimer += (6 * multiplier)
                     }.foregroundColor(.orange).font(.system(size:35))
                     
                     Button("\(Image(systemName: "circle.fill"))"){
-                        playertwotimer += 70
+                        playertwotimer += (7 * multiplier)
                     }.foregroundColor(.black).font(.system(size:35))
                 }
             }.offset(y:50)
@@ -165,6 +168,7 @@ struct ContentView: View {
     
     func updateTimers() {
         timerIntValue = Int(timerValue) ?? 60
+        multiplier = Int(multiply) ?? 10
         playeronetimer = timerIntValue
         playertwotimer = timerIntValue
     }
