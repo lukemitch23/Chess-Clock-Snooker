@@ -22,6 +22,8 @@ struct ContentView: View {
     @State var playernames = true
     @State var playeronename = "Player 1"
     @State var playertwoname = "Player 2"
+    @State var playeronescore = 0
+    @State var playertwoscore = 0
     
     let playerone = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     let playertwo = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -46,39 +48,47 @@ struct ContentView: View {
                             playeronerunning = false
                         }
                     }.font(.system(size: 150, weight: .bold))
-                    .alert("Out of time! \(playertwoname) wins", isPresented: $playeroneout, actions: {
+                    .alert("Out of time! \(playertwoname) wins with a score of \(playertwoscore)", isPresented: $playeroneout, actions: {
                         Button("Ok", action: gamereset)
                     })
+                Text("\(playeronename) score: \(playeronescore)").font(.system(size:20))
             }.offset(y:-90)
             
             Group{
                 HStack{
                     Button("\(Image(systemName: "circle.fill"))"){
                         playeronetimer += (1 * multiplier)
+                        playeronescore += 1
                     }.foregroundColor(.red).font(.system(size:35))
                     
                     Button("\(Image(systemName: "circle.fill"))"){
                         playeronetimer += (2 * multiplier)
+                        playeronescore += 2
                     }.foregroundColor(.yellow).font(.system(size:35))
                     
                     Button("\(Image(systemName: "circle.fill"))"){
                         playeronetimer += (3 * multiplier)
+                        playeronescore += 3
                     }.foregroundColor(.green).font(.system(size:35))
                     
                     Button("\(Image(systemName: "circle.fill"))"){
                         playeronetimer += (4 * multiplier)
+                        playeronescore += 4
                     }.foregroundColor(.brown).font(.system(size:35))
                     
                     Button("\(Image(systemName: "circle.fill"))"){
                         playeronetimer += (5 * multiplier)
+                        playeronescore += 5
                     }.foregroundColor(.blue).font(.system(size:35))
                     
                     Button("\(Image(systemName: "circle.fill"))"){
                         playeronetimer += (6 * multiplier)
+                        playeronescore += 6
                     }.foregroundColor(.orange).font(.system(size:35))
                     
                     Button("\(Image(systemName: "circle.fill"))"){
                         playeronetimer += (7 * multiplier)
+                        playeronescore += 7
                     }.foregroundColor(.black).font(.system(size:35))
 
                 }
@@ -120,36 +130,44 @@ struct ContentView: View {
                 HStack{
                     Button("\(Image(systemName: "circle.fill"))"){
                         playertwotimer += (1 * multiplier)
+                        playertwoscore += 1
                     }.foregroundColor(.red).font(.system(size:35))
                     
                     Button("\(Image(systemName: "circle.fill"))"){
                         playertwotimer += (2 * multiplier)
+                        playertwoscore += 2
                     }.foregroundColor(.yellow).font(.system(size:35))
                     
                     Button("\(Image(systemName: "circle.fill"))"){
                         playertwotimer += (3 * multiplier)
+                        playertwoscore += 3
                     }.foregroundColor(.green).font(.system(size:35))
                     
                     Button("\(Image(systemName: "circle.fill"))"){
                         playertwotimer += (4 * multiplier)
+                        playertwoscore += 4
                     }.foregroundColor(.brown).font(.system(size:35))
                     
                     Button("\(Image(systemName: "circle.fill"))"){
                         playertwotimer += (5 * multiplier)
+                        playertwoscore += 5
                     }.foregroundColor(.blue).font(.system(size:35))
                     
                     Button("\(Image(systemName: "circle.fill"))"){
                         playertwotimer += (6 * multiplier)
+                        playertwoscore += 6
                     }.foregroundColor(.orange).font(.system(size:35))
                     
                     Button("\(Image(systemName: "circle.fill"))"){
                         playertwotimer += (7 * multiplier)
+                        playertwoscore += 7
                     }.foregroundColor(.black).font(.system(size:35))
                 }
             }.offset(y:50)
     
             
             Group{
+                Text("\(playertwoname) score: \(playertwoscore)").font(.system(size:20))
                 Text("\(playertwotimer)")
                     .onReceive(playertwo) { _ in
                         if playertwotimer > 0 && playertworunning {
@@ -162,7 +180,7 @@ struct ContentView: View {
                     }.font(.system(size: 150, weight: .bold))
                 Text("\(playertwoname)").font(.system(size: 50))
             }.rotationEffect(.degrees(180)).offset(y:90)
-            .alert("Out of time! \(playeronename) wins", isPresented: $playertwoout, actions: {
+            .alert("Out of time! \(playeronename) wins with a score of \(playeronescore)", isPresented: $playertwoout, actions: {
                 Button("Ok", action: gamereset)
             })
         }
@@ -178,6 +196,8 @@ struct ContentView: View {
         playertworunning = false
         playeronetimer = 60
         playertwotimer = 60
+        playeronescore = 0
+        playertwoscore = 0
     }
     
     func updateTimers() {
@@ -185,6 +205,8 @@ struct ContentView: View {
         multiplier = Int(multiply) ?? 10
         playeronetimer = timerIntValue
         playertwotimer = timerIntValue
+        playeronescore = 0
+        playertwoscore = 0
     }
 }
 
