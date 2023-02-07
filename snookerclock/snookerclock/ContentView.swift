@@ -12,8 +12,7 @@ struct ContentView: View {
     @State var playertwotimer = 60
     @State var playeronerunning = false
     @State var playertworunning = false
-    @State var showingAlert = false
-    @State var timerValue = ""
+    @State var timerValue = "60"
     @State var timerIntValue = 0
     @State var playeroneout = false
     @State var playertwoout = false
@@ -24,18 +23,47 @@ struct ContentView: View {
     @State var playertwoname = "Player 2"
     @State var playeronescore = 0
     @State var playertwoscore = 0
+    @State var showSettings = false
+    @State var changePlayerNames = false
     
     let playerone = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     let playertwo = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        Text("").alert("Enter player names", isPresented: $playernames, actions: {
-            TextField("Enter player 1 name", text: $playeronename)
-            TextField("Enter the multiplier", text: $playertwoname)
-            Button("Ok", action: setnames)
-            Button("Cancel", role: .cancel, action: {})
-        })
         VStack {
+            Group{
+                Button("\(Image(systemName: "gearshape.fill"))"){
+                    showSettings.toggle()
+                }.font(.system(size:35))
+                    .sheet(isPresented: $showSettings) {
+                        Form {
+                            Section("Settings") {
+                                HStack {
+                                    Text("Player 1 name:").fontWeight(.bold)
+                                    TextField("\(playeronename)", text: $playeronename)
+                                }
+                                HStack {
+                                    Text("Player 2 name:").fontWeight(.bold)
+                                    TextField("\(playertwoname)", text: $playertwoname)
+                                }
+                                HStack {
+                                    Text("Multiplier:").fontWeight(.bold)
+                                    TextField("\(multiplier)", value: $multiplier, formatter: NumberFormatter()).keyboardType(.numberPad)
+                                }
+                                HStack {
+                                    Text("Timer value:").fontWeight(.bold)
+                                    TextField("\(timerValue)", text: $timerValue).keyboardType(.numberPad)
+                                }
+                                Button("Done") {
+                                    updateTimers()
+                                    showSettings.toggle()
+                                }
+                                
+                            }
+                        }
+                    }
+            }.offset(x:130,y:-75)
+            
             Group{
                 Text("\(playeronename)").font(.system(size: 50))
                 Text("\(playeronetimer)")
@@ -53,6 +81,8 @@ struct ContentView: View {
                     })
                 Text("\(playeronename) score: \(playeronescore)").font(.system(size:20))
             }.offset(y:-90)
+            
+            
             
             Group{
                 HStack{
@@ -104,7 +134,7 @@ struct ContentView: View {
                     Button("\(playertwoname)") {
                         playertworunning = true
                         playeronerunning = false
-                    }.font(.system(size: 20)).foregroundColor(.black).fontWeight(.bold)
+                    }.font(.system(size: 20)).foregroundColor(.black).fontWeight(.bold)	
                     
                     Button("Stop") {
                         playertworunning = false
@@ -114,14 +144,8 @@ struct ContentView: View {
                     Button("Reset", role: .destructive) {
                         playertworunning = false
                         playeronerunning = false
-                        showingAlert = true
+                        gamereset()
                     }.font(.system(size: 20)).fontWeight(.bold)
-                        .alert("New Timer Value", isPresented: $showingAlert, actions: {
-                            TextField("Enter the time in seconds", text: $timerValue).keyboardType(.numberPad)
-                            TextField("Enter the multiplier", text: $multiply).keyboardType(.numberPad)
-                            Button("Ok", action: updateTimers)
-                            Button("Cancel", role: .cancel, action: {})
-                        })
                     
                 }
             }
@@ -192,10 +216,11 @@ struct ContentView: View {
     }
     
     func gamereset(){
+        timerIntValue = Int(timerValue) ?? 60
         playeronerunning = false
         playertworunning = false
-        playeronetimer = 60
-        playertwotimer = 60
+        playeronetimer = timerIntValue
+        playertwotimer = timerIntValue
         playeronescore = 0
         playertwoscore = 0
     }

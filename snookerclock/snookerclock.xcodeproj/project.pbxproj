@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		896E2F93298E698D00A6A642 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 896E2F92298E698D00A6A642 /* Launch Screen.storyboard */; };
 		89CAC3452986BEAD0076202D /* snookerclockApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CAC3442986BEAD0076202D /* snookerclockApp.swift */; };
 		89CAC3472986BEAD0076202D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CAC3462986BEAD0076202D /* ContentView.swift */; };
 		89CAC3492986BEB00076202D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89CAC3482986BEB00076202D /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		896E2F92298E698D00A6A642 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		89CAC3412986BEAD0076202D /* snookerclock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = snookerclock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89CAC3442986BEAD0076202D /* snookerclockApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = snookerclockApp.swift; sourceTree = "<group>"; };
 		89CAC3462986BEAD0076202D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 			children = (
 				89CAC3442986BEAD0076202D /* snookerclockApp.swift */,
 				89CAC3462986BEAD0076202D /* ContentView.swift */,
+				896E2F92298E698D00A6A642 /* Launch Screen.storyboard */,
 				89CAC3482986BEB00076202D /* Assets.xcassets */,
 				89CAC34A2986BEB00076202D /* Preview Content */,
 			);
@@ -125,6 +128,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				896E2F93298E698D00A6A642 /* Launch Screen.storyboard in Resources */,
 				89CAC34C2986BEB00076202D /* Preview Assets.xcassets in Resources */,
 				89CAC3492986BEB00076202D /* Assets.xcassets in Resources */,
 			);
@@ -274,6 +278,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -305,6 +310,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
